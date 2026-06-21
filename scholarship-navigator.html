@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scholarship Navigator — Find &amp; Apply to Every Scholarship You Qualify For</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Hind:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EC;
+    --paper-dim:#F2EDE0;
+    --ink:#1C1A14;
+    --ink-soft:#5A5546;
+    --navy:#16284A;
+    --navy-light:#24406F;
+    --saffron:#D9712E;
+    --green:#2C5F4A;
+    --gold:#B5862C;
+    --line:#D9CFB8;
+    --card:#FFFFFF;
+    --danger:#A4392B;
+    --radius:2px;
+    --serif:'Tiro Devanagari Hindi', Georgia, serif;
+    --sans:'Hind', system-ui, sans-serif;
+    --mono:'IBM Plex Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+  }
+  a{color:inherit;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0 0 .4em;color:var(--navy);}
+  .tricolor{height:5px;width:100%;background:linear-gradient(90deg,var(--saffron) 0 33.3%,#fff 33.3% 66.6%,var(--green) 66.6% 100%);}
+  header.masthead{
+    background:var(--navy);
+    color:#fff;
+    border-bottom:3px solid var(--gold);
+  }
+  .masthead-inner{
+    max-width:1180px;margin:0 auto;padding:18px 24px;
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .brand .seal{
+    width:42px;height:42px;border:2px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--serif);font-size:18px;color:var(--gold);flex-shrink:0;
+  }
+  .brand .title{font-family:var(--serif);font-size:22px;letter-spacing:.3px;}
+  .brand .subtitle{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#C9D2E4;margin-top:1px;}
+  nav.mainnav{display:flex;gap:2px;flex-wrap:wrap;}
+  nav.mainnav a{
+    font-size:14px;text-decoration:none;color:#E8ECF4;padding:9px 14px;
+    border:1px solid transparent;letter-spacing:.2px;cursor:pointer;
+  }
+  nav.mainnav a:hover{border-color:rgba(255,255,255,.25);}
+  nav.mainnav a.active{background:var(--gold);color:var(--navy);font-weight:600;border-color:var(--gold);}
+  main{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+  .eyebrow{
+    font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;
+    color:var(--saffron);margin-bottom:8px;display:block;
+  }
+  /* HOME */
+  .hero{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;
+    padding:64px 0 56px;border-bottom:1px solid var(--line);
+  }
+  .hero h1{font-size:42px;line-height:1.15;max-width:560px;}
+  .hero p.lead{font-size:17px;color:var(--ink-soft);max-width:520px;margin-bottom:28px;}
+  .btn{
+    font-family:var(--sans);font-weight:600;font-size:14.5px;letter-spacing:.2px;
+    padding:13px 24px;border-radius:var(--radius);cursor:pointer;border:1.5px solid var(--navy);
+    background:var(--navy);color:#fff;display:inline-flex;align-items:center;gap:8px;
+    text-decoration:none;
+  }
+  .btn:hover{background:var(--navy-light);}
+  .btn.secondary{background:transparent;color:var(--navy);}
+  .btn.secondary:hover{background:var(--navy);color:#fff;}
+  .btn.gold{background:var(--gold);border-color:var(--gold);color:#fff;}
+  .btn.gold:hover{background:#9c7325;}
+  .btn.small{padding:8px 14px;font-size:13px;}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;}
+  .quickcheck{
+    background:var(--card);border:1px solid var(--line);padding:26px;border-radius:var(--radius);
+    box-shadow:0 1px 0 var(--line);
+  }
+  .quickcheck h3{font-size:18px;margin-bottom:4px;}
+  .quickcheck .hint{font-size:13px;color:var(--ink-soft);margin-bottom:18px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;}
+  select, input, textarea{
+    width:100%;padding:10px 12px;border:1px solid var(--line);background:#fff;
+    font-family:var(--sans);font-size:14.5px;border-radius:var(--radius);color:var(--ink);
+  }
+  select:focus, input:focus, textarea:focus{outline:2px solid var(--navy-light);outline-offset:1px;}
+  .quickresult{
+    margin-top:16px;padding:14px 16px;background:var(--paper-dim);border-left:3px solid var(--saffron);
+    font-size:14px;display:none;
+  }
+  .quickresult.show{display:block;}
+  .quickresult .num{font-family:var(--serif);font-size:26px;color:var(--navy);}
+  .stats-row{display:flex;gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 56px;}
+  .stat{flex:1;padding:22px 24px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .n{font-family:var(--serif);font-size:30px;color:var(--navy);display:block;}
+  .stat .l{font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.8px;}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:56px;}
+  .steps .step{border-left:2px solid var(--gold);padding-left:18px;}
+  .step .tag{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:1.5px;}
+  .step h4{font-size:18px;margin:6px 0 8px;}
+  .step p{font-size:14px;color:var(--ink-soft);margin:0;}
+  .home-cta{
+    background:var(--navy);color:#fff;padding:40px 36px;border-radius:var(--radius);
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;margin-bottom:40px;
+  }
+  .home-cta h3{color:#fff;font-size:22px;margin-bottom:4px;}
+  .home-cta p{margin:0;color:#C9D2E4;font-size:14px;}
+  .disclaimer{
+    font-size:12.5px;color:var(--ink-soft);background:var(--paper-dim);border:1px dashed var(--line);
+    padding:14px 16px;margin-bottom:8px;
+  }
+  /* PAGE HEADER */
+  .pagehead{padding:44px 0 24px;border-bottom:1px solid var(--line);margin-bottom:32px;}
+  .pagehead h2{font-size:30px;}
+  .pagehead p{color:var(--ink-soft);max-width:640px;font-size:15px;}
+  /* FORM PAGE */
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 24px;}
+  .form-grid .full{grid-column:1 / -1;}
+  fieldset{border:1px solid var(--line);padding:22px;margin-bottom:24px;border-radius:var(--radius);}
+  legend{font-family:var(--serif);font-size:18px;color:var(--navy);padding:0 8px;}
+  .checkrow{display:flex;align-items:center;gap:8px;margin-top:8px;}
+  .checkrow input{width:auto;}
+  .form-actions{display:flex;gap:12px;align-items:center;margin-top:8px;}
+  .save-msg{font-size:13px;color:var(--green);display:none;}
+  .save-msg.show{display:inline;}
+  /* SCHOLARSHIPS LIST */
+  .filters{
+    display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;align-items:flex-end;
+    background:var(--paper-dim);padding:16px;border:1px solid var(--line);
+  }
+  .filters .field{margin-bottom:0;min-width:150px;flex:1;}
+  .results-count{font-size:13px;color:var(--ink-soft);margin-bottom:14px;font-family:var(--mono);}
+  .scheme-card{
+    background:var(--card);border:1px solid var(--line);padding:20px 22px;margin-bottom:14px;
+    display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;
+  }
+  .scheme-card.eligible{border-left:4px solid var(--green);}
+  .scheme-card .tagrow{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+  .tagchip{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+    padding:3px 8px;border:1px solid var(--line);color:var(--ink-soft);
+  }
+  .tagchip.level-central{border-color:var(--navy);color:var(--navy);}
+  .tagchip.level-state{border-color:var(--saffron);color:var(--saffron);}
+  .tagchip.eligible-chip{background:var(--green);border-color:var(--green);color:#fff;}
+  .scheme-card h4{font-size:17px;margin-bottom:6px;}
+  .scheme-card .meta{font-size:13px;color:var(--ink-soft);margin-bottom:4px;}
+  .figure-flag{font-size:11.5px;color:var(--saffron);margin-bottom:10px;}
+  .figure-flag a{color:var(--saffron);text-decoration:underline;}
+  .scheme-card .benefit{font-size:14px;margin-bottom:10px;}
+  .scheme-card .side{display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+  .empty{padding:50px 20px;text-align:center;color:var(--ink-soft);border:1px dashed var(--line);}
+
+  /* WHY ELIGIBLE */
+  .why-eligible{
+    background:var(--paper-dim);border:1px solid var(--line);border-left:3px solid var(--green);
+    padding:12px 14px;margin:8px 0 12px;
+  }
+  .why-eligible .why-title{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--green);margin-bottom:6px;font-weight:600;
+  }
+  .why-eligible ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;}
+  .why-eligible li{font-size:13.5px;color:var(--ink);padding-left:20px;position:relative;}
+  .why-eligible li::before{
+    content:"✓";position:absolute;left:0;color:var(--green);font-weight:700;
+  }
+
+  /* DETAILS DISCLOSURE (documents etc.) */
+  .card-details{margin-top:10px;}
+  .card-details summary{
+    cursor:pointer;font-size:13px;font-weight:600;color:var(--navy-light);
+    list-style:none;display:inline-flex;align-items:center;gap:5px;
+  }
+  .card-details summary::-webkit-details-marker{display:none;}
+  .card-details summary::after{content:"›";transform:rotate(90deg);display:inline-block;font-size:15px;transition:transform .15s;}
+  .card-details[open] summary::after{transform:rotate(270deg);}
+  .doc-box{
+    margin-top:10px;padding:12px 14px;background:#fff;border:1px solid var(--line);
+  }
+  .doc-box .doc-title{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--ink-soft);margin-bottom:8px;font-weight:600;
+  }
+  .doc-box ul{margin:0 0 12px;padding:0;list-style:none;columns:2;column-gap:18px;}
+  .doc-box ul li{font-size:13px;padding:3px 0 3px 16px;position:relative;break-inside:avoid;}
+  .doc-box ul li::before{content:"•";position:absolute;left:0;color:var(--saffron);}
+  .next-steps-title{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.8px;
+    color:var(--ink-soft);margin:4px 0 8px;font-weight:600;
+  }
+  .next-steps{margin:0;padding:0;list-style:none;counter-reset:ns;}
+  .next-steps li{
+    font-size:13px;padding:4px 0 4px 26px;position:relative;counter-increment:ns;
+  }
+  .next-steps li::before{
+    content:counter(ns);position:absolute;left:0;top:3px;width:17px;height:17px;
+    background:var(--navy);color:#fff;border-radius:50%;font-family:var(--mono);
+    font-size:10px;display:flex;align-items:center;justify-content:center;line-height:1;
+  }
+  .confidence-note{
+    font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:10px;
+    padding-top:10px;border-top:1px dashed var(--line);
+  }
+
+  /* DASHBOARD */
+  .dash-grid{display:grid;grid-template-columns:300px 1fr;gap:28px;}
+  .profile-card{background:var(--card);border:1px solid var(--line);padding:22px;height:fit-content;}
+  .profile-card h4{font-size:16px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:10px;}
+  .profile-row{display:flex;justify-content:space-between;font-size:13.5px;padding:6px 0;border-bottom:1px solid var(--paper-dim);}
+  .profile-row span:first-child{color:var(--ink-soft);}
+  .dash-tabs{display:flex;gap:0;border-bottom:2px solid var(--navy);margin-bottom:20px;}
+  .dash-tab{padding:10px 18px;font-size:14px;cursor:pointer;border:1px solid var(--line);border-bottom:none;background:var(--paper-dim);color:var(--ink-soft);}
+  .dash-tab.active{background:var(--navy);color:#fff;font-weight:600;}
+  .receipt{
+    background:#fff;border:1.5px solid var(--navy);padding:0;margin-bottom:18px;
+    display:grid;grid-template-columns:1fr 110px;
+  }
+  .receipt-main{padding:18px 20px;}
+  .receipt-stub{
+    border-left:2px dashed var(--line);padding:18px 14px;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;background:var(--paper-dim);
+  }
+  .receipt-stub .seal{
+    width:46px;height:46px;border:2px solid var(--gold);border-radius:50%;display:flex;
+    align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--gold);
+    line-height:1.2;margin-bottom:6px;
+  }
+  .receipt .serial{font-family:var(--mono);font-size:13px;color:var(--gold);letter-spacing:.5px;}
+  .receipt h5{font-size:16px;margin:4px 0 8px;color:var(--navy);font-family:var(--serif);}
+  .receipt .rline{font-size:12.5px;color:var(--ink-soft);margin:2px 0;}
+  .status-badge{
+    display:inline-block;font-family:var(--mono);font-size:11px;text-transform:uppercase;
+    padding:3px 9px;background:var(--paper-dim);border:1px solid var(--gold);color:var(--gold);margin-top:6px;
+  }
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:28px 24px;}
+  footer .inner{max-width:1180px;margin:0 auto;font-size:12.5px;color:var(--ink-soft);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  .modal-overlay{
+    position:fixed;inset:0;background:rgba(28,26,20,.55);display:none;align-items:center;justify-content:center;
+    padding:20px;z-index:100;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal{background:#fff;max-width:480px;width:100%;padding:28px;border:1px solid var(--line);max-height:85vh;overflow:auto;}
+  .modal h3{margin-bottom:10px;}
+  .modal .close{float:right;cursor:pointer;font-size:20px;color:var(--ink-soft);line-height:1;}
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .dash-grid{grid-template-columns:1fr;}
+    .stats-row{flex-wrap:wrap;}
+    .stat{flex:1 1 50%;border-bottom:1px solid var(--line);}
+    .steps{grid-template-columns:1fr;}
+    .scheme-card{grid-template-columns:1fr;}
+    .scheme-card .side{align-items:flex-start;flex-direction:row;}
+    .doc-box ul{columns:1;}
+  }
+  :focus-visible{outline:2px solid var(--navy-light);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<div class="tricolor"></div>
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand" data-link="home">
+      <div class="seal">SN</div>
+      <div>
+        <div class="title">Scholarship Navigator</div>
+        <div class="subtitle">Central &amp; State Scholarship Gateway</div>
+      </div>
+    </div>
+    <nav class="mainnav">
+      <a data-link="home">Home</a>
+      <a data-link="register">Register</a>
+      <a data-link="scholarships">Scholarships</a>
+      <a data-link="dashboard">Dashboard</a>
+      <a data-link="about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="inner">
+    <span>Scholarship Navigator — an independent guidance &amp; tracking tool. Not affiliated with the Government of India.</span>
+    <span>Final submissions are completed on the respective official portal (NSP / state scholarship portal).</span>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<script>
+/* =========================================================
+   DATA — disclaimer
+   Eligibility figures below (income ceilings, categories etc.)
+   reflect the general, publicly known structure of these
+   schemes and are for guidance only. Rules and limits change
+   from year to year — always confirm final criteria on the
+   official portal linked on each card before submitting.
+========================================================= */
+
+const STATES = ["Andhra Pradesh","Assam","Bihar","Chhattisgarh","Delhi","Goa","Gujarat","Haryana",
+"Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Odisha","Punjab",
+"Rajasthan","Tamil Nadu","Telangana","Uttar Pradesh","Uttarakhand","West Bengal","Jammu & Kashmir","Other"];
+
+const CATEGORIES = ["General","EWS","OBC","SC","ST"];
+const LEVELS = ["Class 9-10","Class 11-12","Diploma / ITI","Undergraduate","Postgraduate","PhD / Research"];
+
+/* ---------------- DOCUMENT SETS ----------------
+   Standard document bundles. Each scheme references one
+   bundle (or a custom array) via its `docSet` field so we
+   don't have to hand-author 52 separate lists, while still
+   reflecting real differences (e.g. minority schemes need a
+   minority certificate, fellowships need a research proposal).
+---------------------------------------------------- */
+const DOC_SETS = {
+  preMatric: ["Aadhaar Card","Previous year's mark sheet","Income Certificate","Caste/Category Certificate","Bank Passbook (student's account)","Bonafide/Study Certificate from school"],
+  postMatric: ["Aadhaar Card","Previous year's mark sheet / result","Income Certificate","Caste/Category Certificate","Admission/Fee receipt","Bank Passbook (student's account)","Bonafide/Study Certificate from institution"],
+  postMatricMinority: ["Aadhaar Card","Previous year's mark sheet / result","Income Certificate","Minority Community Certificate (self-declaration as applicable)","Admission/Fee receipt","Bank Passbook (student's account)"],
+  meritMeans: ["Aadhaar Card","Class 12 / qualifying mark sheet","Income Certificate","Caste/Category Certificate (if applicable)","Admission/Fee receipt","Bank Passbook (student's account)"],
+  technical: ["Aadhaar Card","Class 12 mark sheet","Admission Letter / Fee Receipt (AICTE-approved institution)","Income Certificate","Bank Passbook (student's account)"],
+  girlChild: ["Aadhaar Card","Birth Certificate","Previous year's mark sheet","Income Certificate","Bank Passbook (in girl student's name)"],
+  disability: ["Aadhaar Card","Disability Certificate (40% or more, UDID preferred)","Previous year's mark sheet","Income Certificate","Admission/Fee receipt","Bank Passbook (student's account)"],
+  fellowship: ["Aadhaar Card","Postgraduate mark sheet / degree certificate","Caste/Category Certificate","Research proposal / synopsis","Institution admission/enrolment proof","Bank Passbook (student's account)"],
+  overseas: ["Passport","Aadhaar Card","Admission offer letter from foreign institution","Income Certificate","Caste/Category Certificate","Statement of purpose"],
+  meritTopper: ["Aadhaar Card","Class 12 board mark sheet (showing rank/percentage)","Admission/Fee receipt","Bank Passbook (student's account)"],
+};
+
+const SCHEMES = [
+ {id:"c01",name:"Pre-Matric Scholarship for SC Students",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["SC"],levels:["Class 9-10"],maxIncome:250000,benefit:"Tuition fee, maintenance allowance and ad-hoc grant for SC students in classes 9-10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"preMatric"},
+ {id:"c02",name:"Post-Matric Scholarship for SC Students",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["SC"],levels:["Undergraduate","Postgraduate","Diploma / ITI","PhD / Research"],maxIncome:250000,benefit:"Maintenance allowance, tuition and reimbursement of non-refundable fees beyond Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"c03",name:"Pre-Matric Scholarship for OBC Students",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["OBC"],levels:["Class 9-10"],maxIncome:250000,benefit:"Financial assistance for OBC students studying in classes 9 and 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"preMatric"},
+ {id:"c04",name:"Post-Matric Scholarship for OBC Students",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:150000,benefit:"Maintenance allowance and fee reimbursement for OBC students after Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"c05",name:"Pre-Matric Scholarship for ST Students",authority:"Ministry of Tribal Affairs",type:"Central",states:["All"],categories:["ST"],levels:["Class 9-10"],maxIncome:250000,benefit:"Financial support for ST students in classes 9-10 to reduce dropout rates.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"preMatric"},
+ {id:"c06",name:"Post-Matric Scholarship for ST Students",authority:"Ministry of Tribal Affairs",type:"Central",states:["All"],categories:["ST"],levels:["Undergraduate","Postgraduate","Diploma / ITI","PhD / Research"],maxIncome:250000,benefit:"Maintenance and fee support for ST students pursuing studies after Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"c07",name:"Top Class Education Scheme for SC Students",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["SC"],levels:["Undergraduate","Postgraduate"],maxIncome:800000,benefit:"Full tuition and related expenses for SC students admitted to listed top-tier institutions.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"c08",name:"National Fellowship for SC Students (PhD)",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["SC"],levels:["PhD / Research"],maxIncome:null,benefit:"Monthly fellowship and contingency grant for SC research scholars (M.Phil/PhD).",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"fellowship"},
+ {id:"c09",name:"Pre-Matric Scholarship for Minority Students",authority:"Ministry of Minority Affairs",type:"Central",states:["All"],categories:["General","OBC","EWS"],levels:["Class 9-10"],maxIncome:100000,minorityOnly:true,benefit:"Support for students of notified minority communities (Muslim, Christian, Sikh, Buddhist, Jain, Parsi) in classes 9-10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"preMatric"},
+ {id:"c10",name:"Post-Matric Scholarship for Minority Students",authority:"Ministry of Minority Affairs",type:"Central",states:["All"],categories:["General","OBC","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:200000,minorityOnly:true,benefit:"Maintenance allowance and fee support for minority students after Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatricMinority"},
+ {id:"c11",name:"Merit-cum-Means Scholarship for Minorities",authority:"Ministry of Minority Affairs",type:"Central",states:["All"],categories:["General","OBC","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,minorityOnly:true,benefit:"Scholarship for minority students in professional and technical degree/diploma courses.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatricMinority"},
+ {id:"c12",name:"Begum Hazrat Mahal National Scholarship",authority:"Maulana Azad Education Foundation",type:"Central",states:["All"],categories:["General","OBC","EWS"],levels:["Class 9-10","Class 11-12"],maxIncome:200000,minorityOnly:true,genderOnly:"Female",benefit:"Scholarship for meritorious girl students from minority communities in classes 9-12.",url:"https://www.maef.nic.in",portal:"Maulana Azad Education Foundation",docSet:"girlChild"},
+ {id:"c13",name:"National Means-cum-Merit Scholarship (NMMS)",authority:"Ministry of Education",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Class 9-10","Class 11-12"],maxIncome:350000,benefit:"₹12,000 per annum to meritorious students of economically weaker sections to prevent dropout at Class 8.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"meritMeans"},
+ {id:"c14",name:"Central Sector Scheme of Scholarship",authority:"Ministry of Education",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate"],maxIncome:800000,benefit:"Scholarship for college students who are top performers in Class 12 board examinations.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"meritTopper"},
+ {id:"c15",name:"AICTE Pragati Scholarship for Girls",authority:"AICTE",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Diploma / ITI","Undergraduate"],maxIncome:800000,genderOnly:"Female",benefit:"₹50,000 per annum for girl students (max 1 per family) pursuing AICTE-approved technical courses.",url:"https://www.aicte-india.org",portal:"AICTE Scholarship Portal",docSet:"technical"},
+ {id:"c16",name:"AICTE Saksham Scholarship",authority:"AICTE",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Diploma / ITI","Undergraduate"],maxIncome:800000,disabilityOnly:true,benefit:"₹50,000 per annum for specially-abled students in AICTE-approved technical institutions.",url:"https://www.aicte-india.org",portal:"AICTE Scholarship Portal",docSet:"disability"},
+ {id:"c17",name:"INSPIRE Scholarship for Higher Education",authority:"Dept. of Science & Technology",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate"],maxIncome:null,benefit:"₹80,000 per annum for top-rank students pursuing science degree courses (B.Sc/Int. M.Sc).",url:"https://online-inspire.gov.in",portal:"INSPIRE Portal, DST",docSet:"meritTopper"},
+ {id:"c18",name:"PM-YASASVI Scholarship",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["OBC"],levels:["Class 9-10","Class 11-12"],maxIncome:250000,benefit:"Scholarship for OBC, EBC and DNT students in classes 9-12 through a national entrance test.",url:"https://yet.nta.ac.in",portal:"YASASVI Entrance Test, NTA",docSet:"preMatric"},
+ {id:"c19",name:"National Overseas Scholarship",authority:"Ministry of Social Justice & Empowerment",type:"Central",states:["All"],categories:["SC"],levels:["Postgraduate","PhD / Research"],maxIncome:800000,benefit:"Financial assistance for SC and landless agricultural labourer students for studies abroad.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"overseas"},
+ {id:"c20",name:"Kishore Vaigyanik Protsahan Yojana (KVPY)-linked Fellowship",authority:"Dept. of Science & Technology",type:"Central",states:["All"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","PhD / Research"],maxIncome:null,benefit:"Fellowship support for students pursuing basic science research careers.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"fellowship"},
+
+ {id:"mh01",name:"Rajarshi Chhatrapati Shahu Maharaj Scholarship",authority:"Govt. of Maharashtra",type:"State",states:["Maharashtra"],categories:["General","OBC","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:800000,benefit:"Tuition and exam fee waiver for students with family income up to ₹8 lakh in professional courses.",url:"https://mahadbt.maharashtra.gov.in",portal:"MahaDBT Portal",docSet:"postMatric"},
+ {id:"mh02",name:"Post-Matric Scholarship (SC/ST/VJNT/OBC) — Maharashtra",authority:"Govt. of Maharashtra",type:"State",states:["Maharashtra"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Maintenance allowance and fee reimbursement for SC/ST/VJNT/OBC students after Class 10.",url:"https://mahadbt.maharashtra.gov.in",portal:"MahaDBT Portal",docSet:"postMatric"},
+ {id:"up01",name:"UP Pre-Matric Scholarship",authority:"Govt. of Uttar Pradesh",type:"State",states:["Uttar Pradesh"],categories:["SC","ST","OBC","General"],levels:["Class 9-10"],maxIncome:250000,benefit:"Scholarship support for students of classes 9-10 studying in UP government/aided schools.",url:"https://scholarship.up.gov.in",portal:"UP Scholarship Portal",docSet:"preMatric"},
+ {id:"up02",name:"UP Post-Matric Scholarship",authority:"Govt. of Uttar Pradesh",type:"State",states:["Uttar Pradesh"],categories:["SC","ST","OBC","General"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:200000,benefit:"Fee reimbursement and maintenance allowance for higher-education students of UP.",url:"https://scholarship.up.gov.in",portal:"UP Scholarship Portal",docSet:"postMatric"},
+ {id:"tn01",name:"Tamil Nadu Adi Dravidar Welfare Scholarship",authority:"Adi Dravidar & Tribal Welfare Dept.",type:"State",states:["Tamil Nadu"],categories:["SC","ST"],levels:["Class 9-10","Class 11-12","Undergraduate","Postgraduate"],maxIncome:250000,benefit:"Pre and post matric financial support for SC/ST students of Tamil Nadu.",url:"https://www.tn.gov.in",portal:"TN Adi Dravidar Welfare Dept.",docSet:"postMatric"},
+ {id:"tn02",name:"Tamil Nadu First Graduate Scholarship",authority:"Dept. of Higher Education, TN",type:"State",states:["Tamil Nadu"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate"],maxIncome:250000,benefit:"Support for students who are the first graduate in their family, studying in TN colleges.",url:"https://www.tn.gov.in",portal:"TN Higher Education Dept.",docSet:"postMatric"},
+ {id:"ka01",name:"Vidyasiri Scholarship",authority:"Dept. of Backward Classes Welfare, Karnataka",type:"State",states:["Karnataka"],categories:["OBC","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Maintenance allowance for backward class hostel-eligible students studying in Karnataka.",url:"https://ssp.postmatric.karnataka.gov.in",portal:"Karnataka SSP Portal",docSet:"postMatric"},
+ {id:"ka02",name:"Devaraj Urs Post-Matric Scholarship",authority:"Dr. B R Ambedkar Development Corporation, Karnataka",type:"State",states:["Karnataka"],categories:["SC","ST"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Post-matric support for SC/ST students of Karnataka pursuing higher education.",url:"https://ssp.postmatric.karnataka.gov.in",portal:"Karnataka SSP Portal",docSet:"postMatric"},
+ {id:"wb01",name:"Aikyashree Scholarship",authority:"WB Minorities' Affairs & Madrasah Education Dept.",type:"State",states:["West Bengal"],categories:["General","OBC","EWS"],levels:["Class 9-10","Class 11-12","Undergraduate","Postgraduate"],maxIncome:200000,minorityOnly:true,benefit:"Pre-matric, post-matric and merit-cum-means support for minority students of West Bengal.",url:"https://wbmdfc.org",portal:"Aikyashree Portal",docSet:"postMatricMinority"},
+ {id:"wb02",name:"Swami Vivekananda Merit-cum-Means Scholarship (SVMCM)",authority:"Higher Education Dept., West Bengal",type:"State",states:["West Bengal"],categories:["General","OBC","SC","ST","EWS"],levels:["Class 11-12","Undergraduate","Postgraduate","PhD / Research"],maxIncome:250000,benefit:"Merit-cum-means scholarship for meritorious students of West Bengal across study levels.",url:"https://svmcm.wbhed.gov.in",portal:"SVMCM Portal",docSet:"meritMeans"},
+ {id:"gj01",name:"Mukhyamantri Yuva Swavalamban Yojana (MYSY)",authority:"Govt. of Gujarat",type:"State",states:["Gujarat"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:600000,benefit:"Tuition fee assistance and hostel/exam support for meritorious students of Gujarat.",url:"https://mysy.guj.nic.in",portal:"MYSY Portal",docSet:"postMatric"},
+ {id:"rj01",name:"Mukhyamantri Uchcha Shiksha Scholarship",authority:"Govt. of Rajasthan",type:"State",states:["Rajasthan"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate"],maxIncome:800000,benefit:"Financial assistance for meritorious students of Rajasthan studying in government colleges.",url:"https://sso.rajasthan.gov.in",portal:"SSO Rajasthan Portal",docSet:"postMatric"},
+ {id:"mp01",name:"Medhavi Vidyarthi Yojana",authority:"Govt. of Madhya Pradesh",type:"State",states:["Madhya Pradesh"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate"],maxIncome:600000,benefit:"Fee reimbursement for Class 12 toppers (above 70%) admitted to recognised colleges in MP.",url:"https://scholarshipportal.mp.nic.in",portal:"MP Scholarship Portal",docSet:"meritTopper"},
+ {id:"bh01",name:"Mukhyamantri Kanya Utthan Yojana",authority:"Govt. of Bihar",type:"State",states:["Bihar"],categories:["General","OBC","SC","ST","EWS"],levels:["Class 9-10","Class 11-12","Undergraduate"],maxIncome:null,genderOnly:"Female",benefit:"Incentive grants for girl students of Bihar at multiple stages from school to graduation.",url:"https://medhasoft.bihar.gov.in",portal:"Medha Soft Portal, Bihar",docSet:"girlChild"},
+ {id:"bh02",name:"Bihar Student Credit Card Scheme",authority:"Govt. of Bihar",type:"State",states:["Bihar"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:null,benefit:"Collateral-free education loan up to ₹4 lakh for higher studies for Bihar domiciled students.",url:"https://medhasoft.bihar.gov.in",portal:"Medha Soft Portal, Bihar",docSet:"postMatric"},
+ {id:"kl01",name:"e-Grantz Post-Matric Scholarship",authority:"Govt. of Kerala",type:"State",states:["Kerala"],categories:["SC","ST","OBC","General"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Online scholarship disbursal for post-matric students of Kerala across categories.",url:"https://www.egrantz.kerala.gov.in",portal:"e-Grantz Portal",docSet:"postMatric"},
+ {id:"pb01",name:"Punjab Post-Matric Scholarship for SC Students",authority:"Welfare of SC/BC & Minorities Dept., Punjab",type:"State",states:["Punjab"],categories:["SC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Fee reimbursement and maintenance allowance for SC students of Punjab.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"hr01",name:"Mukhyamantri Vidya Jyoti Yojana",authority:"Higher Education Dept., Haryana",type:"State",states:["Haryana"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate"],maxIncome:300000,genderOnly:"Female",benefit:"Fee waiver for meritorious girl students from economically weaker families in Haryana.",url:"https://saralharyana.gov.in",portal:"Saral Haryana Portal",docSet:"girlChild"},
+ {id:"dl01",name:"Delhi Govt. Merit Scholarship Scheme",authority:"Directorate of Higher Education, Delhi",type:"State",states:["Delhi"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate"],maxIncome:null,benefit:"Merit-based scholarship for top-ranking students of Delhi government colleges/universities.",url:"https://scholarship.india.gov.in",portal:"Directorate of Higher Education, Delhi",docSet:"meritTopper"},
+ {id:"ap01",name:"Jagananna Vidya Deevena",authority:"Govt. of Andhra Pradesh",type:"State",states:["Andhra Pradesh"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Diploma / ITI"],maxIncome:250000,benefit:"Full tuition fee reimbursement for students of AP studying in colleges within the state.",url:"https://jnanabhumi.ap.gov.in",portal:"Jnanabhumi Portal, AP",docSet:"postMatric"},
+ {id:"ts01",name:"Telangana Post-Matric Scholarship (ePASS)",authority:"Govt. of Telangana",type:"State",states:["Telangana"],categories:["SC","ST","OBC","General","EWS"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:200000,benefit:"Maintenance and fee reimbursement for post-matric students of Telangana across categories.",url:"https://telanganaepass.cgg.gov.in",portal:"Telangana ePASS Portal",docSet:"postMatric"},
+ {id:"or01",name:"Odisha Post-Matric Scholarship",authority:"SC & ST Development Dept., Odisha",type:"State",states:["Odisha"],categories:["SC","ST"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Financial support for SC/ST students of Odisha pursuing higher education.",url:"https://scholarship.odisha.gov.in",portal:"Odisha Scholarship Portal",docSet:"postMatric"},
+ {id:"as01",name:"Assam Post-Matric Scholarship",authority:"Welfare of Plain Tribes & Backward Classes Dept., Assam",type:"State",states:["Assam"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Scholarship support for SC/ST/OBC students of Assam after Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"jh01",name:"Jharkhand Post-Matric Scholarship",authority:"Welfare Dept., Jharkhand",type:"State",states:["Jharkhand"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Maintenance allowance for SC/ST/OBC students of Jharkhand in higher education.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"cg01",name:"Chhattisgarh Post-Matric Scholarship",authority:"Tribal & SC Development Dept., Chhattisgarh",type:"State",states:["Chhattisgarh"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Support for SC/ST/OBC students of Chhattisgarh pursuing studies beyond Class 10.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"hp01",name:"Himachal Pradesh Post-Matric Scholarship",authority:"Tribal Development Dept., Himachal Pradesh",type:"State",states:["Himachal Pradesh"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Financial support for SC/ST/OBC students of Himachal Pradesh in higher studies.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"uk01",name:"Uttarakhand Post-Matric Scholarship",authority:"Social Welfare Dept., Uttarakhand",type:"State",states:["Uttarakhand"],categories:["SC","ST","OBC"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Maintenance and fee support for SC/ST/OBC students of Uttarakhand.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"},
+ {id:"goa01",name:"Goa Higher Education Scholarship",authority:"Directorate of Higher Education, Goa",type:"State",states:["Goa"],categories:["General","OBC","SC","ST","EWS"],levels:["Undergraduate","Postgraduate"],maxIncome:600000,benefit:"Merit and means-based scholarship for students of Goa in undergraduate and postgraduate study.",url:"https://dhegoa.gov.in",portal:"Directorate of Higher Education, Goa",docSet:"meritMeans"},
+ {id:"jk01",name:"J&K Post-Matric Scholarship",authority:"Social Welfare Dept., Jammu & Kashmir",type:"State",states:["Jammu & Kashmir"],categories:["SC","ST","OBC","General"],levels:["Undergraduate","Postgraduate","Diploma / ITI"],maxIncome:250000,benefit:"Scholarship support for students of J&K pursuing higher education within or outside the UT.",url:"https://scholarships.gov.in",portal:"National Scholarship Portal",docSet:"postMatric"}
+];
+
+/* ---------------- STORAGE HELPERS ----------------
+   This site can run two ways:
+   1) Inside Claude.ai's artifact viewer, where window.storage
+      provides per-account cloud storage.
+   2) As a standalone file or hosted website, where window.storage
+      does not exist — so it falls back to the browser's own
+      localStorage (saved on this device/browser only).
+------------------------------------------------------ */
+const HAS_CLOUD_STORAGE = (typeof window !== 'undefined' && !!window.storage);
+const LS_KEYS = { profile: 'scholarshipNavigator_profile', applications: 'scholarshipNavigator_applications' };
+
+async function loadProfile(){
+  if(HAS_CLOUD_STORAGE){
+    try{ const r = await window.storage.get('profile'); return r ? JSON.parse(r.value) : null; }
+    catch(e){ /* key not set yet, fall through */ }
+  }
+  try{ const raw = localStorage.getItem(LS_KEYS.profile); return raw ? JSON.parse(raw) : null; }
+  catch(e){ return null; }
+}
+async function saveProfile(p){
+  let ok = false;
+  if(HAS_CLOUD_STORAGE){
+    try{ await window.storage.set('profile', JSON.stringify(p)); ok = true; }
+    catch(e){ console.error('cloud save failed', e); }
+  }
+  try{ localStorage.setItem(LS_KEYS.profile, JSON.stringify(p)); ok = true; }
+  catch(e){ console.error('local save failed', e); }
+  return ok;
+}
+async function loadApplications(){
+  if(HAS_CLOUD_STORAGE){
+    try{ const r = await window.storage.get('applications'); return r ? JSON.parse(r.value) : []; }
+    catch(e){ /* fall through */ }
+  }
+  try{ const raw = localStorage.getItem(LS_KEYS.applications); return raw ? JSON.parse(raw) : []; }
+  catch(e){ return []; }
+}
+async function saveApplications(list){
+  let ok = false;
+  if(HAS_CLOUD_STORAGE){
+    try{ await window.storage.set('applications', JSON.stringify(list)); ok = true; }
+    catch(e){ console.error('cloud save failed', e); }
+  }
+  try{ localStorage.setItem(LS_KEYS.applications, JSON.stringify(list)); ok = true; }
+  catch(e){ console.error('local save failed', e); }
+  return ok;
+}
+
+/* ---------------- APP STATE ---------------- */
+const AppState = { profile:null, applications:[], loaded:false };
+
+async function ensureLoaded(){
+  if(AppState.loaded) return;
+  AppState.profile = await loadProfile();
+  AppState.applications = await loadApplications();
+  AppState.loaded = true;
+}
+
+/* ---------------- ELIGIBILITY ---------------- */
+function isEligible(scheme, profile){
+  if(!profile) return false;
+  if(!scheme.states.includes("All") && !scheme.states.includes(profile.state)) return false;
+  if(!scheme.categories.includes(profile.category)) return false;
+  if(!scheme.levels.includes(profile.level)) return false;
+  if(scheme.maxIncome!=null && Number(profile.income) > scheme.maxIncome) return false;
+  if(scheme.minorityOnly && !profile.isMinority) return false;
+  if(scheme.disabilityOnly && !profile.hasDisability) return false;
+  if(scheme.genderOnly && scheme.genderOnly !== profile.gender) return false;
+  return true;
+}
+function quickEligibleCount(state, category, level){
+  return SCHEMES.filter(s=>{
+    if(!s.states.includes("All") && !s.states.includes(state)) return false;
+    if(!s.categories.includes(category)) return false;
+    if(!s.levels.includes(level)) return false;
+    return true;
+  });
+}
+
+/* ---------------- WHY YOU'RE ELIGIBLE ----------------
+   Builds the list of plain-language reasons a profile matches
+   a scheme. Each reason is only added if that criterion is
+   actually a *restriction* the scheme applies — e.g. a scheme
+   open to all five categories doesn't get a category-specific
+   reason, since category wasn't what made the student match.
+   This is what keeps a scheme like Pragati (open to every
+   category, restricted by gender and course type) from
+   incorrectly claiming "you belong to the SC category" as a
+   reason — the real, narrowing reasons are level, income and
+   gender, so only those are listed.
+------------------------------------------------------- */
+function eligibilityReasons(scheme, profile){
+  const reasons = [];
+  const levelLabel = {
+    "Class 9-10":"are studying in Class 9 or 10",
+    "Class 11-12":"are studying in Class 11 or 12",
+    "Diploma / ITI":"are pursuing a Diploma or ITI course",
+    "Undergraduate":"are pursuing an undergraduate degree",
+    "Postgraduate":"are pursuing a postgraduate degree",
+    "PhD / Research":"are pursuing PhD-level research"
+  };
+  if(levelLabel[profile.level]) reasons.push(`You ${levelLabel[profile.level]}`);
+
+  if(!scheme.states.includes("All")){
+    reasons.push(`You are domiciled in ${profile.state}, a state this scheme covers`);
+  }
+
+  // Only call out category if the scheme actually restricts by category
+  // (i.e. it does not list all five categories).
+  if(scheme.categories.length < CATEGORIES.length){
+    reasons.push(`You belong to the ${profile.category} category, which this scheme covers`);
+  }
+
+  if(scheme.maxIncome!=null){
+    reasons.push(`Your family income (₹${Number(profile.income).toLocaleString('en-IN')}) is within the ₹${scheme.maxIncome.toLocaleString('en-IN')} limit`);
+  }
+
+  if(scheme.minorityOnly){
+    reasons.push(`You belong to a notified minority community`);
+  }
+  if(scheme.disabilityOnly){
+    reasons.push(`You have a recognised disability, which this scheme is for`);
+  }
+  if(scheme.genderOnly){
+    reasons.push(`You meet the gender requirement (${scheme.genderOnly.toLowerCase()} applicants)`);
+  }
+  return reasons;
+}
+
+/* ---------------- ROUTER ---------------- */
+const app = document.getElementById('app');
+
+function navigate(route){
+  window.location.hash = route;
+}
+window.addEventListener('hashchange', render);
+document.addEventListener('click', (e)=>{
+  const link = e.target.closest('[data-link]');
+  if(link){ e.preventDefault(); navigate(link.getAttribute('data-link')); }
+});
+
+async function render(){
+  await ensureLoaded();
+  const route = (window.location.hash || '#home').replace('#','').split('/')[0] || 'home';
+  document.querySelectorAll('nav.mainnav a').forEach(a=>a.classList.toggle('active', a.getAttribute('data-link')===route));
+  window.scrollTo(0,0);
+  if(route==='home') app.innerHTML = renderHome();
+  else if(route==='register') app.innerHTML = renderRegister();
+  else if(route==='scholarships') app.innerHTML = renderScholarships();
+  else if(route==='dashboard') app.innerHTML = renderDashboard();
+  else if(route==='about') app.innerHTML = renderAbout();
+  else app.innerHTML = renderHome();
+  attachPageHandlers(route);
+}
+
+/* ---------------- HOME ---------------- */
+function renderHome(){
+  const total = SCHEMES.length;
+  const central = SCHEMES.filter(s=>s.type==='Central').length;
+  const state = SCHEMES.filter(s=>s.type==='State').length;
+  const statesCovered = new Set(SCHEMES.flatMap(s=>s.states.includes('All')?[]:s.states)).size;
+  return `
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Student Welfare · Scholarship Gateway</span>
+      <h1>One profile. Every scholarship you actually qualify for — central and state.</h1>
+      <p class="lead">Register once with your education, category and income details. Scholarship Navigator matches you against ${total} central and state government scholarship schemes, and walks you through applying on the correct official portal.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="btn" data-link="register">Register your profile →</a>
+        <a class="btn secondary" data-link="scholarships">Browse all schemes</a>
+      </div>
+    </div>
+    <div class="quickcheck">
+      <h3>Quick eligibility check</h3>
+      <div class="hint">No registration needed — see how many schemes match in seconds.</div>
+      <div class="field">
+        <label for="qState">State of domicile</label>
+        <select id="qState">${STATES.map(s=>`<option>${s}</option>`).join('')}</select>
+      </div>
+      <div class="field">
+        <label for="qCategory">Category</label>
+        <select id="qCategory">${CATEGORIES.map(c=>`<option>${c}</option>`).join('')}</select>
+      </div>
+      <div class="field">
+        <label for="qLevel">Education level</label>
+        <select id="qLevel">${LEVELS.map(l=>`<option>${l}</option>`).join('')}</select>
+      </div>
+      <button class="btn small" id="qCheckBtn" type="button">Check eligible schemes</button>
+      <div class="quickresult" id="qResult"></div>
+    </div>
+  </section>
+
+  <section class="stats-row">
+    <div class="stat"><span class="n">${total}</span><span class="l">Schemes tracked</span></div>
+    <div class="stat"><span class="n">${central}</span><span class="l">Central schemes</span></div>
+    <div class="stat"><span class="n">${state}</span><span class="l">State schemes</span></div>
+    <div class="stat"><span class="n">${statesCovered}</span><span class="l">States &amp; UTs covered</span></div>
+  </section>
+
+  <section class="steps">
+    <div class="step">
+      <span class="tag">STEP 01</span>
+      <h4>Build your student profile</h4>
+      <p>Education level, category, family income, state and a few more details — saved securely to your account so you only enter it once.</p>
+    </div>
+    <div class="step">
+      <span class="tag">STEP 02</span>
+      <h4>See your eligible scholarships</h4>
+      <p>We check your profile against every central and state scheme in the database and show you exactly which ones you qualify for, and why.</p>
+    </div>
+    <div class="step">
+      <span class="tag">STEP 03</span>
+      <h4>Apply &amp; track</h4>
+      <p>Get an acknowledgement receipt here, then finish submission on the correct official portal — NSP or your state's portal — with one click.</p>
+    </div>
+  </section>
+
+  <div class="disclaimer">
+    <strong>⚠ Always verify on the official portal:</strong> Income limits, benefit amounts and documents shown on this site are approximate. Government scholarship rules change every academic year, central schemes are often modified by state-level top-ups, and official guidelines are spread across many separate ministry and state portals — so no single number here should be treated as final. Before applying or submitting documents, always confirm the exact, current criteria on the official portal linked on each scheme card.
+  </div>
+
+  <section class="home-cta">
+    <div>
+      <h3>Ready to find your matches?</h3>
+      <p>Registration takes about three minutes.</p>
+    </div>
+    <a class="btn gold" data-link="register">Start registration →</a>
+  </section>
+  `;
+}
+
+/* ---------------- REGISTER ---------------- */
+function renderRegister(){
+  const p = AppState.profile || {};
+  const opt = (arr, val) => arr.map(x=>`<option ${x===val?'selected':''}>${x}</option>`).join('');
+  return `
+  <section class="pagehead">
+    <span class="eyebrow">Student Profile</span>
+    <h2>${AppState.profile ? 'Update your profile' : 'Register your profile'}</h2>
+    <p>This information is used only to match you against scholarship eligibility criteria and is saved to your account on this site.</p>
+  </section>
+  <form id="profileForm">
+    <fieldset>
+      <legend>Personal details</legend>
+      <div class="form-grid">
+        <div class="field"><label for="f_name">Full name</label><input id="f_name" required value="${p.name||''}"></div>
+        <div class="field"><label for="f_dob">Date of birth</label><input id="f_dob" type="date" required value="${p.dob||''}"></div>
+        <div class="field"><label for="f_gender">Gender</label>
+          <select id="f_gender"><option ${p.gender==='Female'?'selected':''}>Female</option><option ${p.gender==='Male'?'selected':''}>Male</option><option ${p.gender==='Other'?'selected':''}>Other</option></select>
+        </div>
+        <div class="field"><label for="f_mobile">Mobile number</label><input id="f_mobile" required pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" value="${p.mobile||''}"></div>
+        <div class="field"><label for="f_email">Email address</label><input id="f_email" type="email" value="${p.email||''}"></div>
+        <div class="field"><label for="f_state">State of domicile</label><select id="f_state">${opt(STATES, p.state)}</select></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Category &amp; eligibility details</legend>
+      <div class="form-grid">
+        <div class="field"><label for="f_category">Social category</label><select id="f_category">${opt(CATEGORIES, p.category)}</select></div>
+        <div class="field"><label for="f_income">Annual family income (₹)</label><input id="f_income" type="number" min="0" required value="${p.income!=null?p.income:''}"></div>
+        <div class="field full">
+          <div class="checkrow"><input type="checkbox" id="f_minority" ${p.isMinority?'checked':''}><label for="f_minority" style="margin:0;text-transform:none;font-weight:500;font-size:14px;">I belong to a notified minority community (Muslim, Christian, Sikh, Buddhist, Jain or Parsi)</label></div>
+          <div class="checkrow"><input type="checkbox" id="f_disability" ${p.hasDisability?'checked':''}><label for="f_disability" style="margin:0;text-transform:none;font-weight:500;font-size:14px;">I have a recognised disability (40% or more)</label></div>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Education details</legend>
+      <div class="form-grid">
+        <div class="field"><label for="f_level">Current education level</label><select id="f_level">${opt(LEVELS, p.level)}</select></div>
+        <div class="field"><label for="f_course">Course / stream</label><input id="f_course" placeholder="e.g. B.Tech Computer Science" value="${p.course||''}"></div>
+        <div class="field full"><label for="f_institution">Institution name</label><input id="f_institution" value="${p.institution||''}"></div>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <button type="submit" class="btn">Save profile</button>
+      <span class="save-msg" id="saveMsg">Profile saved.</span>
+    </div>
+  </form>
+  `;
+}
+
+/* ---------------- SCHOLARSHIPS ---------------- */
+function renderScholarships(filters){
+  filters = filters || {type:'All', state:'All', category:'All', level:'All', q:'', onlyEligible:false};
+  const p = AppState.profile;
+  let list = SCHEMES.filter(s=>{
+    if(filters.type!=='All' && s.type!==filters.type) return false;
+    if(filters.state!=='All' && !(s.states.includes('All')||s.states.includes(filters.state))) return false;
+    if(filters.category!=='All' && !s.categories.includes(filters.category)) return false;
+    if(filters.level!=='All' && !s.levels.includes(filters.level)) return false;
+    if(filters.q && !s.name.toLowerCase().includes(filters.q.toLowerCase())) return false;
+    if(filters.onlyEligible && !(p && isEligible(s,p))) return false;
+    return true;
+  });
+  const opt=(arr,val)=>['All',...arr].map(x=>`<option ${x===val?'selected':''}>${x}</option>`).join('');
+  return `
+  <section class="pagehead">
+    <span class="eyebrow">Scheme Directory</span>
+    <h2>Browse all scholarships</h2>
+    <p>${SCHEMES.length} central and state schemes. ${p? 'Schemes you currently qualify for, based on your saved profile, are marked.' : 'Register your profile to see which of these you personally qualify for.'}</p>
+  </section>
+
+  <div class="disclaimer">
+    <strong>⚠ Always verify on the official portal:</strong> Income limits and benefit amounts below are approximate and may differ from this year's actual rules. Tap "Required documents &amp; next steps" on any scheme for a direct link to confirm details on the official portal.
+  </div>
+
+  <div class="filters">
+    <div class="field"><label>Type</label><select id="fl_type">${opt(['Central','State'],filters.type)}</select></div>
+    <div class="field"><label>State</label><select id="fl_state">${opt(STATES,filters.state)}</select></div>
+    <div class="field"><label>Category</label><select id="fl_category">${opt(CATEGORIES,filters.category)}</select></div>
+    <div class="field"><label>Education level</label><select id="fl_level">${opt(LEVELS,filters.level)}</select></div>
+    <div class="field"><label>Search</label><input id="fl_q" placeholder="Search by name" value="${filters.q}"></div>
+    ${p?`<div class="field" style="min-width:160px;"><label>&nbsp;</label><div class="checkrow" style="margin-top:10px;"><input type="checkbox" id="fl_onlyEligible" ${filters.onlyEligible?'checked':''}><label style="margin:0;text-transform:none;font-weight:500;">Only show my matches</label></div></div>`:''}
+  </div>
+
+  <div class="results-count">${list.length} scheme${list.length!==1?'s':''} found</div>
+
+  <div id="schemeList">
+    ${list.length ? list.map(s=>schemeCardHTML(s,p)).join('') : '<div class="empty">No schemes match these filters. Try widening your search.</div>'}
+  </div>
+  `;
+}
+
+function schemeCardHTML(s, profile){
+  const eligible = profile ? isEligible(s, profile) : false;
+  const applied = AppState.applications.find(a=>a.schemeId===s.id);
+  const docs = DOC_SETS[s.docSet] || DOC_SETS.postMatric;
+  const reasons = eligible ? eligibilityReasons(s, profile) : [];
+
+  return `
+  <div class="scheme-card ${eligible?'eligible':''}">
+    <div>
+      <div class="tagrow">
+        <span class="tagchip ${s.type==='Central'?'level-central':'level-state'}">${s.type}</span>
+        <span class="tagchip">${s.states.includes('All')?'All States':s.states.join(', ')}</span>
+        <span class="tagchip">${s.categories.includes('General')&&s.categories.length===5?'All categories':s.categories.join('/')}</span>
+        ${eligible?'<span class="tagchip eligible-chip">You qualify</span>':''}
+      </div>
+      <h4>${s.name}</h4>
+      <div class="meta">${s.authority} · ${s.levels.join(', ')}${s.maxIncome!=null?` · Income limit ₹${s.maxIncome.toLocaleString('en-IN')}*`:''}</div>
+      <div class="figure-flag">* Figures are approximate — <a href="${s.url}" target="_blank" rel="noopener">verify on ${s.portal} ↗</a></div>
+      <div class="benefit">${s.benefit}</div>
+
+      ${eligible && reasons.length ? `
+      <div class="why-eligible">
+        <div class="why-title">Why you're eligible</div>
+        <ul>${reasons.map(r=>`<li>${r}</li>`).join('')}</ul>
+      </div>` : ''}
+
+      <details class="card-details">
+        <summary>Required documents &amp; next steps</summary>
+        <div class="doc-box">
+          <div class="doc-title">Required Documents</div>
+          <ul>${docs.map(d=>`<li>${d}</li>`).join('')}</ul>
+          <div class="next-steps-title">Next Steps</div>
+          <ol class="next-steps">
+            <li>Collect the required documents listed above</li>
+            <li>Visit the official portal (${s.portal})</li>
+            <li>Submit your application before the deadline</li>
+            <li>Track your verification status on the portal</li>
+          </ol>
+          <div class="confidence-note">⚠ Income limits, benefit amounts and documents shown here are approximate and may not reflect this year's actual rules — central scheme figures are often topped up or modified by individual states, and limits change between academic years. <strong>Always check the official portal (${s.portal}) for the exact, current rules before applying.</strong></div>
+        </div>
+      </details>
+    </div>
+    <div class="side">
+      <a class="btn small secondary" href="${s.url}" target="_blank" rel="noopener">Official portal ↗</a>
+      ${applied
+        ? `<span class="status-badge">Applied · ${applied.serial}</span>`
+        : `<button class="btn small" type="button" data-apply="${s.id}">${profile? 'Apply':'Register to apply'}</button>`}
+    </div>
+  </div>`;
+}
+
+/* ---------------- DASHBOARD ---------------- */
+function renderDashboard(tab){
+  tab = tab || 'eligible';
+  const p = AppState.profile;
+  if(!p){
+    return `
+    <section class="pagehead">
+      <span class="eyebrow">Dashboard</span>
+      <h2>No profile found</h2>
+      <p>Register your student profile first to see your matches and applications here.</p>
+    </section>
+    <a class="btn" data-link="register">Register now →</a>`;
+  }
+  const eligible = SCHEMES.filter(s=>isEligible(s,p));
+  return `
+  <section class="pagehead">
+    <span class="eyebrow">Dashboard</span>
+    <h2>Welcome, ${p.name.split(' ')[0]}</h2>
+    <p>Your saved profile, matched scholarships and application receipts.</p>
+  </section>
+  <div class="dash-grid">
+    <div class="profile-card">
+      <h4>Profile summary</h4>
+      <div class="profile-row"><span>State</span><span>${p.state}</span></div>
+      <div class="profile-row"><span>Category</span><span>${p.category}</span></div>
+      <div class="profile-row"><span>Income (annual)</span><span>₹${Number(p.income).toLocaleString('en-IN')}</span></div>
+      <div class="profile-row"><span>Education level</span><span>${p.level}</span></div>
+      <div class="profile-row"><span>Minority status</span><span>${p.isMinority?'Yes':'No'}</span></div>
+      <div class="profile-row"><span>Disability</span><span>${p.hasDisability?'Yes':'No'}</span></div>
+      <div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">
+        <a class="btn small secondary" data-link="register">Edit profile</a>
+        <button class="btn small" type="button" id="resetDataBtn" style="background:transparent;color:var(--danger);border-color:var(--danger);">Clear my saved data</button>
+      </div>
+    </div>
+    <div>
+      <div class="dash-tabs">
+        <div class="dash-tab ${tab==='eligible'?'active':''}" data-tab="eligible">Eligible schemes (${eligible.length})</div>
+        <div class="dash-tab ${tab==='applied'?'active':''}" data-tab="applied">My applications (${AppState.applications.length})</div>
+      </div>
+      <div id="dashContent">
+        ${tab==='eligible' ? renderDashEligible(eligible, p) : renderDashApplied()}
+      </div>
+    </div>
+  </div>
+  `;
+}
+function renderDashEligible(eligible, p){
+  if(!eligible.length) return '<div class="empty">No matches yet with your current profile. Check the full scheme directory or update your profile details.</div>';
+  return eligible.map(s=>schemeCardHTML(s,p)).join('');
+}
+function renderDashApplied(){
+  if(!AppState.applications.length) return '<div class="empty">You have not applied to any scheme yet. Go to the "Eligible schemes" tab or the Scholarships page to apply.</div>';
+  return AppState.applications.slice().reverse().map(a=>`
+    <div class="receipt">
+      <div class="receipt-main">
+        <div class="serial">${a.serial}</div>
+        <h5>${a.schemeName}</h5>
+        <div class="rline">Applicant: ${a.applicantName}</div>
+        <div class="rline">Date logged: ${a.appliedAt}</div>
+        <div class="rline">Portal for final submission: ${a.portal}</div>
+        <span class="status-badge">${a.status}</span>
+      </div>
+      <div class="receipt-stub">
+        <div class="seal">SN<br>VERIFIED</div>
+        <a href="${a.url}" target="_blank" rel="noopener" style="font-size:11px;text-decoration:underline;">Go to portal</a>
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ---------------- ABOUT ---------------- */
+function renderAbout(){
+  return `
+  <section class="pagehead">
+    <span class="eyebrow">About</span>
+    <h2>How Scholarship Navigator works</h2>
+  </section>
+  <div style="max-width:680px;">
+    <p>Scholarship Navigator is an independent guidance and tracking tool that helps students discover central and state government scholarships they are eligible for, based on a profile they fill in once.</p>
+    <h4 style="margin-top:28px;">What this site does</h4>
+    <p>It maintains a database of major scholarship schemes — covering social-justice, tribal-welfare, minority-affairs and education-department schemes from the central government and from many state governments — and matches your profile against each scheme's published eligibility rules (state, category, income ceiling, education level, gender and disability criteria where applicable). For each match, it explains in plain language why you qualify and lists the documents you'll typically need.</p>
+    <h4 style="margin-top:22px;">What this site does not do</h4>
+    <p>It does not submit applications directly into any government system. Government scholarship portals such as the National Scholarship Portal (NSP) and individual state portals do not provide a way for outside websites to submit on a student's behalf. When you "apply" here, Scholarship Navigator records your intent and gives you a reference receipt, then sends you to the correct official portal to complete and submit your application with your documents.</p>
+    <h4 style="margin-top:22px;">A note on accuracy — please read</h4>
+    <p>Scholarship rules are published across dozens of separate ministry and state portals, change every academic year, and central schemes are frequently topped up or modified by individual states. Because of this, the income limits, benefit amounts and document lists shown on this site are <strong>approximate</strong> and should not be relied on as final. They are based on the general, publicly known structure of each scheme, not a live feed from any government system. Final eligibility, exact figures, document requirements and deadlines are always determined solely by the scholarship provider — please confirm every detail on the official portal (linked on each scheme card) before applying or submitting any documents.</p>
+    <h4 style="margin-top:22px;">Your data</h4>
+    <p>Your profile and application records are saved to your account on this site so you don't have to re-enter them. You can edit or clear this data at any time from your Dashboard.</p>
+  </div>
+  `;
+}
+
+/* ---------------- HANDLERS ---------------- */
+function attachPageHandlers(route){
+  if(route==='home'){
+    const btn = document.getElementById('qCheckBtn');
+    btn && btn.addEventListener('click', ()=>{
+      const state = document.getElementById('qState').value;
+      const category = document.getElementById('qCategory').value;
+      const level = document.getElementById('qLevel').value;
+      const matches = quickEligibleCount(state, category, level);
+      const result = document.getElementById('qResult');
+      result.innerHTML = `<span class="num">${matches.length}</span> scheme${matches.length!==1?'s':''} match these basic criteria.<br>Register your full profile to refine this with your income and other details, and to apply.`;
+      result.classList.add('show');
+    });
+  }
+  if(route==='register'){
+    const form = document.getElementById('profileForm');
+    form && form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const profile = {
+        name: document.getElementById('f_name').value.trim(),
+        dob: document.getElementById('f_dob').value,
+        gender: document.getElementById('f_gender').value,
+        mobile: document.getElementById('f_mobile').value.trim(),
+        email: document.getElementById('f_email').value.trim(),
+        state: document.getElementById('f_state').value,
+        category: document.getElementById('f_category').value,
+        income: Number(document.getElementById('f_income').value),
+        isMinority: document.getElementById('f_minority').checked,
+        hasDisability: document.getElementById('f_disability').checked,
+        level: document.getElementById('f_level').value,
+        course: document.getElementById('f_course').value.trim(),
+        institution: document.getElementById('f_institution').value.trim()
+      };
+      const ok = await saveProfile(profile);
+      AppState.profile = profile;
+      const msg = document.getElementById('saveMsg');
+      if(ok){ msg.textContent = 'Profile saved.'; msg.classList.add('show'); setTimeout(()=>navigate('dashboard'), 700); }
+      else { msg.textContent = 'Could not save — please try again.'; msg.style.color='var(--danger)'; msg.classList.add('show'); }
+    });
+  }
+  if(route==='scholarships'){
+    const ids = ['fl_type','fl_state','fl_category','fl_level','fl_q','fl_onlyEligible'];
+    const collect = ()=>({
+      type: val('fl_type','All'), state: val('fl_state','All'), category: val('fl_category','All'),
+      level: val('fl_level','All'), q: val('fl_q',''), onlyEligible: document.getElementById('fl_onlyEligible')? document.getElementById('fl_onlyEligible').checked : false
+    });
+    function val(id, fallback){ const el = document.getElementById(id); return el ? el.value : fallback; }
+    ids.forEach(id=>{
+      const el = document.getElementById(id);
+      el && el.addEventListener('input', ()=>{ app.innerHTML = renderScholarships(collect()); attachPageHandlers('scholarships'); });
+      el && el.addEventListener('change', ()=>{ app.innerHTML = renderScholarships(collect()); attachPageHandlers('scholarships'); });
+    });
+    attachApplyButtons();
+  }
+  if(route==='dashboard'){
+    document.querySelectorAll('.dash-tab').forEach(t=>{
+      t.addEventListener('click', ()=>{
+        const content = document.getElementById('dashContent');
+        document.querySelectorAll('.dash-tab').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        const tab = t.getAttribute('data-tab');
+        const p = AppState.profile;
+        const eligible = SCHEMES.filter(s=>isEligible(s,p));
+        content.innerHTML = tab==='eligible' ? renderDashEligible(eligible,p) : renderDashApplied();
+        attachApplyButtons();
+      });
+    });
+    const resetBtn = document.getElementById('resetDataBtn');
+    resetBtn && resetBtn.addEventListener('click', async ()=>{
+      if(!confirm('This will permanently delete your saved profile and application records on this site. Continue?')) return;
+      if(HAS_CLOUD_STORAGE){
+        try{ await window.storage.delete('profile'); }catch(e){}
+        try{ await window.storage.delete('applications'); }catch(e){}
+      }
+      try{ localStorage.removeItem(LS_KEYS.profile); }catch(e){}
+      try{ localStorage.removeItem(LS_KEYS.applications); }catch(e){}
+      AppState.profile = null;
+      AppState.applications = [];
+      navigate('home');
+    });
+    attachApplyButtons();
+  }
+}
+
+function attachApplyButtons(){
+  document.querySelectorAll('[data-apply]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const id = btn.getAttribute('data-apply');
+      if(!AppState.profile){ navigate('register'); return; }
+      const scheme = SCHEMES.find(s=>s.id===id);
+      const already = AppState.applications.find(a=>a.schemeId===id);
+      if(already){ showReceiptModal(already); return; }
+      const serial = 'SN-' + new Date().getFullYear() + '-' + Math.random().toString(36).slice(2,8).toUpperCase();
+      const application = {
+        schemeId: scheme.id, schemeName: scheme.name, serial,
+        applicantName: AppState.profile.name,
+        appliedAt: new Date().toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}),
+        status: 'Logged — complete on official portal',
+        portal: scheme.portal, url: scheme.url
+      };
+      AppState.applications.push(application);
+      await saveApplications(AppState.applications);
+      showReceiptModal(application);
+      render();
+    });
+  });
+}
+
+function showReceiptModal(a){
+  const overlay = document.getElementById('modalOverlay');
+  document.getElementById('modalBody').innerHTML = `
+    <span class="close" id="modalClose">&times;</span>
+    <h3>Application acknowledged</h3>
+    <div class="receipt" style="margin-top:14px;">
+      <div class="receipt-main">
+        <div class="serial">${a.serial}</div>
+        <h5>${a.schemeName}</h5>
+        <div class="rline">Applicant: ${a.applicantName}</div>
+        <div class="rline">Date logged: ${a.appliedAt}</div>
+        <div class="rline">Submit via: ${a.portal}</div>
+      </div>
+      <div class="receipt-stub">
+        <div class="seal">SN<br>VERIFIED</div>
+      </div>
+    </div>
+    <div class="next-steps-title" style="margin-top:16px;">Next Steps</div>
+    <ol class="next-steps">
+      <li>Confirm exact eligibility, income limit and required documents on the official portal</li>
+      <li>Collect your documents accordingly</li>
+      <li>Submit your application before the deadline</li>
+      <li>Track your verification status</li>
+    </ol>
+    <p style="font-size:13.5px;color:var(--ink-soft);margin-top:10px;">This receipt confirms Scholarship Navigator has logged your intent to apply. <strong>The figures shown on this site are approximate</strong> — to complete the actual scholarship application, continue on the official portal below and follow the rules published there.</p>
+    <a class="btn" href="${a.url}" target="_blank" rel="noopener" style="width:100%;justify-content:center;margin-top:6px;">Continue on ${a.portal} ↗</a>
+  `;
+  overlay.classList.add('show');
+  document.getElementById('modalClose').addEventListener('click', ()=>overlay.classList.remove('show'));
+  overlay.addEventListener('click', (e)=>{ if(e.target===overlay) overlay.classList.remove('show'); });
+}
+
+render();
+</script>
+</body>
+</html>
