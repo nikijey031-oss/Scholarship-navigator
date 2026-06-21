@@ -23,7 +23,7 @@ AI-assisted chat for questions about your specific matches
 
 🛠️ Tech Stack
 
-Frontend
+->Frontend
 
 
 HTML5
@@ -31,14 +31,14 @@ CSS3 (custom properties, no framework)
 Vanilla JavaScript (hash-based router, no build step)
 
 
-Data Management
+->Data Management
 
 
 In-file structured JS dataset of 49 central and state scholarship schemes
 Browser localStorage for profile/application persistence
 
 
-AI Features
+->AI Features
 
 
 Claude API (Anthropic) — powers the scoped "Ask about your matches" assistant
